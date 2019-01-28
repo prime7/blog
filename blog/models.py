@@ -11,7 +11,10 @@ class PostManager(models.Manager):
         return super(PostManager, self).filter(approved=True)
     
     def latest_posts(self, *args, **kwargs):
-        return super(PostManager, self).filter(approved=True).order_by('-date_posted')[:3]
+        return super(PostManager, self).filter(approved=True).order_by('date_posted')[:3]
+    
+    def popular_posts(self, *args, **kwargs):
+        return super(PostManager, self).filter(approved=True).order_by('-views')[:3]
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -20,6 +23,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
     approved = models.BooleanField(default=False)
+    views = models.PositiveIntegerField(default=0)
 
 
     objects = PostManager()
