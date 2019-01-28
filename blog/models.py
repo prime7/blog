@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from .utils import get_read_time
+
 
 
 class PostManager(models.Manager):
@@ -11,7 +13,7 @@ class PostManager(models.Manager):
         return super(PostManager, self).filter(approved=True)
     
     def latest_posts(self, *args, **kwargs):
-        return super(PostManager, self).filter(approved=True).order_by('date_posted')[:3]
+        return super(PostManager, self).filter(approved=True).order_by('-date_posted')[:3]
     
     def popular_posts(self, *args, **kwargs):
         return super(PostManager, self).filter(approved=True).order_by('-views')[:3]
@@ -24,6 +26,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     approved = models.BooleanField(default=False)
     views = models.PositiveIntegerField(default=0)
+    read_time =  models.IntegerField(default=0)
 
 
     objects = PostManager()
@@ -49,6 +52,11 @@ def create_slug(instance,new_slug = None):
 def pre_save_post_receiver(sender,instance,*args,**kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
+    
+    if instance.content:
+        html_string = instance.content
+        read_time_var = get_read_time(html_string)
+        instance.read_time = read_time_var
     
 
 pre_save.connect(pre_save_post_receiver,sender=Post)
