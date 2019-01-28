@@ -30,12 +30,20 @@ class PostListView(ListView):
 
     def get(self, request, *args, **kwargs):
         if request.GET:
-            posts = Post.objects.all()
+            posts = Post.objects.active()
             query = request.GET["q"]
             if query:
                 posts = posts.filter(Q(title__icontains=query)|Q(content__icontains=query)).distinct() # author, author_id, content, date_posted, id, title
                 return render(request, self.template_name, {'posts': posts})
         return super().get(request, *args, **kwargs)
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        latest_posts = Post.objects.latest_posts()
+        context.update({
+            'latest_posts': latest_posts
+        })
+        return context
 
 
 

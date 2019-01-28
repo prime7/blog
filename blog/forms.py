@@ -13,3 +13,11 @@ class PostCreateForm(forms.ModelForm):
         widgets = {
             'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '500px'}}),
         }
+
+class PostCreateFormAdmin(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        widgets = {
+            'content': SummernoteWidget(attrs={'summernote': {'width': '100%', 'height': '500px'}}),
+        }
