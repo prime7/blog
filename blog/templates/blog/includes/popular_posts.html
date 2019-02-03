@@ -1,21 +1,21 @@
 <div class="card">
-        <div class="card-header text-center" id="headingTwo">
-            <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                Popular Posts
-            </button>
-            </h5>
-        </div>
-    
-        <div id="collapseTwo" class="collapse collapsed" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-                <ul>
-                    {% for post in popular_posts %}
-                    <li>
-                        <a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="card-header text-center" id="headingTwo">
+        <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            Popular Posts
+        </button>
+        </h5>
+    </div>
+
+    <div id="collapseTwo" class="collapse collapsed" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+            <ul>
+                {% for post in popular_posts %}
+                <li>
+                    <a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
+</div>
