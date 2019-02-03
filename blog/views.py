@@ -10,8 +10,7 @@ from django.db.models import Q,F
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
+    context_object_name = 'post'
     paginate_by = 5
 
     def get(self, request, *args, **kwargs):
@@ -23,8 +22,24 @@ class PostListView(ListView):
                 return render(request, self.template_name, {'posts': posts})
         return super().get(request, *args, **kwargs)
     
+    # def get_queryset(self):
+    #     print("query1")
+    #     if self.request.GET:
+    #         print("query2")
+    #         print(self.request.GET["search"])
+    #         posts = Post.objects.active()
+    #         query = self.request.GET["search"]
+    #         if query:
+    #             print("query3")
+    #             posts = posts.filter(Q(title__icontains=query)|Q(content__icontains=query)).distinct()
+    #             return render(self.request, self.template_name, {'posts': posts})
+    #     return Post.objects.all().order_by('-date_posted')
+    
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
+        if self.request.GET:
+            query = self.request.GET["q"]
+            print(query)
         posts = Post.objects.active()
         latest_posts = Post.objects.latest_posts()
         popular_posts = Post.objects.popular_posts()
