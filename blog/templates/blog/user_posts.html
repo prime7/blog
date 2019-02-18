@@ -10,7 +10,7 @@
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-            <p class="article-content article-html">{{ post.content }}</p>
+            <p class="article-content article-html">{{ post.content|truncatewords_html:50 }}</p>
           </div>
         </article>
     {% endfor %}
