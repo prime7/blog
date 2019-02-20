@@ -7,3 +7,7 @@ local_settings.py
 
 .env
 db.sqlite3
+
+.env.swp
+media/profile_pics/download.png
+static/
