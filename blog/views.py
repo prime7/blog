@@ -52,13 +52,11 @@ class UserPostListView(ListView):
     
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
-        posts = Post.objects.active()
         latest_posts = Post.objects.latest_posts()
         popular_posts = Post.objects.popular_posts()
         featured_posts = Post.objects.featured_posts()
         context.update({
             'latest_posts': latest_posts,
-            'posts' : posts ,
             'popular_posts' : popular_posts,
             'featured_posts' : featured_posts
         })

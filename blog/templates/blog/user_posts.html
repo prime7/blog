@@ -4,7 +4,7 @@
     <div class="card social">
         <p>{{ posts.0.author.profile.bio }}</p>
         <div class="m-2">
-          <a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
+          {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>{% endif %}
           <a itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>
           <a itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>
         </div>
