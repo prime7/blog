@@ -1,5 +1,13 @@
 {% extends "blog/base.html" %}
 {% block content %}
+  <div class="card social">
+      <p>{{ object.author.profile.bio }}</p>
+      <div class="m-2">
+        <a itemprop="sameAs" href="{{ object.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
+        <a itemprop="sameAs" href="{{ object.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>
+        <a itemprop="sameAs" href="{{ object.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>
+      </div>
+  </div>
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">

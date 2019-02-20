@@ -1,6 +1,15 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <h5 class="mb-3" style="text-align:center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <div class="card social">
+        <p>{{ posts.0.author.profile.bio }}</p>
+        <div class="m-2">
+          <a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
+          <a itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>
+          <a itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
     {% for post in posts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
