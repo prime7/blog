@@ -1,18 +1,28 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h5 class="mb-3" style="text-align:center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
-    <div class="card social">
-        <p>{{ posts.0.author.profile.bio }}</p>
-        <div class="m-2">
-          {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>{% endif %}
-          <a itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>
-          <a itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
+    <h5 class="mb-3" style="text-align:center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h5>
+      <article class="author-details card">
+          <h3 class="text-center" style="background-color:#CF4D35;height: 50px;color: seashell; font-weight: bold;font-variant: small-caps">About the author</h3>
+          <div class="row">
+            <div class="col-md-2">
+                <img class="rounded-circle img-thumbnail" style="height: 120px;width: 120px;margin: 10px" src="{{ posts.0.author.profile.image.url }}">
+            </div>
+            <div class="col-md-8">
+                <h3 style="height: 50px;color: #CF4D35; font-weight: bold; text-transform: capitalize ; margin: 10px">{{ posts.0.author }}</h3>
+                <p style="margin: 10px 10px 0px 10px ; font-size:20px ">{{ posts.0.author.profile.bio }}</p>
+                <br>
+                <div class="m-2">
+                  {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>{% endif %}
+                  {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>{% endif %}
+                  {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>{% endif %}
+                </div>
+            </div>
+          </div>
+      </article>
 
     {% for post in posts %}
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+          <!-- <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}"> -->
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
