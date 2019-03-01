@@ -13,11 +13,11 @@ ul {
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: #CF4D35;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #fff;
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -104,3 +104,21 @@ a.article-title:hover {
 .social{
   text-align: center;
 }
+
+/* About The Author Starts */
+.about-author{
+  background-color:#CF4D35;height: 50px;color: seashell; font-weight: bold;font-variant: small-caps;
+}
+
+.bio-pic{
+  height: 120px;width: 120px;margin: 10px;
+}
+
+.username{
+  height: 50px;color: #CF4D35; font-weight: bold; text-transform: capitalize ; margin: 10px;
+}
+
+.author-bio{
+  margin: 10px 10px 0px 10px ; font-size:20px ;
+}
+/* About The Author Ends */
