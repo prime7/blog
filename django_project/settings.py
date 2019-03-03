@@ -150,4 +150,14 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 SUMMERNOTE_THEME = 'bs3'
 SUMMERNOTE_CONFIG = {
     'attachment_filesize_limit': 50000,
+    'summernote': {
+      'toolbar': [
+            ['style', ['style']],
+            ['style', ['bold', 'italic', 'underline']],
+            ['para', ['ul', 'ol']],
+            ['insert', ['link','picture','hr','table']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']],
+        ]
+    },
 }
