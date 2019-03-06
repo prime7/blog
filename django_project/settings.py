@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'newsletter.apps.NewsletterConfig',
+    'news.apps.NewsConfig',
     'crispy_forms',
     'django_summernote',
     'django.contrib.admin',

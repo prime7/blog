@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('newsletter.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('news/',include('news.urls')),
 ]
 
 

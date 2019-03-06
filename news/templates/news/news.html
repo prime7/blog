@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for news in all_news %}
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2"><img class="img-resposive thumbnail" src="{{news.image}}" style="height: 90px;width: 140px;"></div>
+        <div class="col-md-6">
+            <a href="{{ news.url }}"><h5>{{ news.title }}</h5></a>
+            <p style="color: #CF4D35;">{{ news.website }}</p>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+{% endblock content %}
