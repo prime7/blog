@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
     <h5 class="mb-3 text-center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h5>
-    <article class="author-details card">
+    <article class="card">
         <h3 class="text-center about-author">About the author</h3>
         <div class="row">
           <div class="col-md-2">
@@ -12,23 +12,23 @@
               <p class="author-bio">{{ posts.0.author.profile.bio }}</p>
               <br>
               <div class="m-2">
-                {% if posts.0.author.profile.youtube %}<a itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>{% endif %}
-                {% if posts.0.author.profile.website %}<a itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>{% endif %}
-                {% if posts.0.author.profile.github %}<a itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>{% endif %}
+                {% if posts.0.author.profile.youtube %}<a class="link" itemprop="sameAs" href="{{ posts.0.author.profile.youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>{% endif %}
+                {% if posts.0.author.profile.website %}<a class="link"  itemprop="sameAs" href="{{ posts.0.author.profile.website }}" target="_blank" title="Website"><i class="fas fa-link"></i></a>{% endif %}
+                {% if posts.0.author.profile.github %}<a class="link"  itemprop="sameAs" href="{{ posts.0.author.profile.github }}" target="_blank" title="Github"><i class="fab fa-github"></i></a>{% endif %}
               </div>
           </div>
         </div>
     </article>
 
     {% for post in posts %}
-        <article class="media content-section">
+        <article>
           <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            <div>
+              <a class="username" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-            <p class="article-content article-html">{{ post.content|truncatewords_html:50 }}</p>
+            <h2 class="text-center "><a class="link" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
+            <p class="article-html">{{ post.content|truncatewords_html:50 }}</p>
           </div>
         </article>
     {% endfor %}
